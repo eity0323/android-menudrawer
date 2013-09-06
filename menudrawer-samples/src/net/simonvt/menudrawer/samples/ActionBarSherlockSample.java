@@ -1,15 +1,9 @@
 package net.simonvt.menudrawer.samples;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 
-import net.simonvt.menudrawer.MenuDrawer;
+import android.app.Activity;
 
-import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.TextView;
-
-public class ActionBarSherlockSample extends SherlockActivity {
+public class ActionBarSherlockSample extends  Activity {/*
 
     private static final String TAG = "ActionBarSherlockSample";
 
@@ -52,4 +46,4 @@ public class ActionBarSherlockSample extends SherlockActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+*/}

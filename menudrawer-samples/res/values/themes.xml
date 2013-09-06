@@ -19,8 +19,5 @@
         <item name="menuDrawerStyle">@style/MenuDrawerStyle.Bottom</item>
     </style>
 
-    <style name="SampleTheme.Sherlock" parent="Theme.Sherlock.Light.DarkActionBar">
-        <item name="menuDrawerStyle">@style/MenuDrawerStyle</item>
-    </style>
 
 </resources>
