@@ -31,7 +31,7 @@ public abstract class MenuDrawer extends ViewGroup {
      * Callback interface for changing state of the drawer.
      */
     public interface OnDrawerStateChangeListener {
-
+        
         /**
          * Called when the drawer state changes.
          *
@@ -39,7 +39,7 @@ public abstract class MenuDrawer extends ViewGroup {
          * @param newState The new drawer state.
          */
         void onDrawerStateChange(int oldState, int newState);
-
+        
         /**
          * Called when the drawer slides.
          *
@@ -47,6 +47,12 @@ public abstract class MenuDrawer extends ViewGroup {
          * @param offsetPixels Current offset of the menu in pixels.
          */
         void onDrawerSlide(float openRatio, int offsetPixels);
+    }
+    public interface OnMenuVisibeStateListener {
+
+        void onMenuClose();
+        void onMenuOpen();
+
     }
 
     /**
@@ -296,6 +302,16 @@ public abstract class MenuDrawer extends ViewGroup {
      * Listener used to dispatch state change events.
      */
     private OnDrawerStateChangeListener mOnDrawerStateChangeListener;
+    private OnMenuVisibeStateListener mOnMenuVisibeStateListener;
+
+    public OnMenuVisibeStateListener getOnMenuVisibeStateListener() {
+        return mOnMenuVisibeStateListener;
+    }
+
+    public void setOnMenuVisibeStateListener(
+            OnMenuVisibeStateListener onMenuVisibeStateListener) {
+        mOnMenuVisibeStateListener = onMenuVisibeStateListener;
+    }
 
     /**
      * Touch mode for the Drawer.
@@ -840,6 +856,13 @@ public abstract class MenuDrawer extends ViewGroup {
      */
     public void toggleMenu() {
         toggleMenu(true);
+        if(null!=mOnMenuVisibeStateListener){
+            if(isMenuVisible()){
+                mOnMenuVisibeStateListener.onMenuOpen();
+            }else{
+                mOnMenuVisibeStateListener.onMenuClose();
+            }
+        }
     }
 
     /**
@@ -854,6 +877,9 @@ public abstract class MenuDrawer extends ViewGroup {
      */
     public void openMenu() {
         openMenu(true);
+        if(null!=mOnMenuVisibeStateListener){
+            mOnMenuVisibeStateListener.onMenuOpen();
+        }
     }
 
     /**
@@ -868,6 +894,9 @@ public abstract class MenuDrawer extends ViewGroup {
      */
     public void closeMenu() {
         closeMenu(true);
+        if(null!=mOnMenuVisibeStateListener){
+            mOnMenuVisibeStateListener.onMenuClose();
+        }
     }
 
     /**
